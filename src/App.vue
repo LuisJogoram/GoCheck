@@ -8,11 +8,6 @@
             <div class="logo">
                 <a>GoCheck 📍</a>
             </div>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="relacaoviagens.html">Início</a></li>
-                </ul>
-            </div>
         </nav>
     </header>
     <main>

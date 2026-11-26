@@ -11,45 +11,12 @@ function ativarCadastrar() {
     cadastrar.ativado = !cadastrar.ativado
 }
 
-const nome = ref('')
-const documento = ref('')
-const telefone = ref('')
-const nomeeme = ref('')
-const telefoneeme = ref('')
+const nomeModel = ref('')
+const documentoModel = ref('')
+const telefoneModel = ref('')
+const telefoneemeModel = ref('')
 
-const passageiros = reactive([
-    {
-    nome: 'Luiz Lins',
-    documento: "000.000.000-01",
-    telefone: "(00)00000-0000",
-    telefoneEme: "(00)00000-0000",
-    presente: false
-    },
-
-    {
-    nome: 'Laura Lívia',
-    documento: "000.000.000-02",
-    telefone: "(00)00000-0000",
-    telefoneEme: "(00)00000-0000",
-    presente: true
-    },
-
-    {
-    nome: 'Maria Silva',
-    documento: "000.000.000-03",
-    telefone: "(00)00000-0000",
-    telefoneEme: "(00)00000-0000",
-    presente: false
-    },
-  
-    {
-    nome: 'João Souza',
-    documento: "000.000.000-04",
-    telefone: "(00)00000-0000",
-    telefoneEme: "(00)00000-0000",
-    presente: true
-    },
-])
+const passageiros = reactive([])
 
 const presenca = (n) => {
     passageiros[n].presente = !passageiros[n].presente
@@ -63,9 +30,13 @@ const criar = (nome, documento, telefone, telefoneeme) => {
         telefoneEme: telefoneeme,
         presente: false
     });
+    nomeModel.value = ''
+    documentoModel.value = ''
+    telefoneModel.value = ''
+    telefoneemeModel.value = ''
 };
 
-const editar = (n) => {
+const alterar = (n) => {
     cadastrar.ativado = true
     nome.value = passageiros[n].nome
     documento.value = passageiros[n].documento
@@ -89,26 +60,26 @@ const excluir = (n) => {
         <div class="form-2parts">
             <div class="form-field">
                 <label for="name">Digite o nome completo do passageiro</label>
-                <input id="name" type="text" placeholder="Nome completo" required v-model="nome">
+                <input id="name" type="text" placeholder="Nome completo" required v-model="nomeModel">
             </div>
             <div class="form-field">
                 <label for="id">Digite o documento de identificação (CPF se for brasileiro)</label>
-                <input id="id" type="text" placeholder="Documento de identificação" required v-model="documento">
+                <input id="id" type="text" placeholder="Documento de identificação" required v-model="documentoModel">
             </div>
         </div>
         <div class="form-2parts">
             <div class="form-field">
                 <label for="cellcont">Digite o telefone de contato do passageiro</label>
-                <input id="cellcont" type="text" placeholder="Ex: (00)00000-0000" required v-model="telefone">
+                <input id="cellcont" type="text" placeholder="Ex: (00)00000-0000" required v-model="telefoneModel">
             </div>
             <div class="form-field">
                 <label for="celleme">Digite o contato de emergência do passageiro</label>
-                <input id="celleme" type="text" placeholder="Ex: (00)00000-0000" required v-model="telefoneeme">
+                <input id="celleme" type="text" placeholder="Ex: (00)00000-0000" required v-model="telefoneemeModel">
             </div>
         </div>
 
         <div class="form-buttons">
-            <button @click="criar(nome, documento, telefone, telefoneeme)">Salvar</button>
+            <button @click="criar(nomeModel, documentoModel, telefoneModel, telefoneemeModel)">Salvar</button>
         </div>
     </div>
     <table>
@@ -136,7 +107,7 @@ const excluir = (n) => {
                 </td>
                 <td>
                     <a class="button a button-tab" @click="presenca(id)">Presente</a>
-                    <a class="button a button-tab" @click="editar(id)">Editar</a>
+                    <a class="button a button-tab" @click="alterar(id)">Alterar</a>
                     <a class="button a button-tab" @click="excluir(id)">Excluir</a>
                 </td>
             </tr>
